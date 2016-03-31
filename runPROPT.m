@@ -1,6 +1,6 @@
 % Computes optimal solution for half of a periodical cycle for a 5-link humanoid robot  
-% model: composed of 5 rigid bodies: two legs composed (tibia and thigh)
-% and upper body.
+% model: five revolute joints liked by five rigid bodies that represent
+% legs ( tibia + thigh) and upper body.
 % Obs: It is necessary to have TOMLAB PROPT installed.
 % Last modification: 30/03/2014 (by Feliphe G. Galiza)
 
@@ -173,13 +173,14 @@ ceq = collocate({M(1,:)*dot(qd) == RHS(1);
 % Function to be optimized
 %objective = integrate(u1*u1 + u2*u2 + u3*u3 + u4*u4 + u5*u5);
 objective = tf;
-% Solve the problem
 
+% Solve the problem
 options = struct;
-options.name = 'Humanoid';
+options.name = 'FiveLinkHumanoid';
 options.solve = 'snopt';
 solution = ezsolve(objective,{cbox,cbnd,ceq},x0, options);
 
+% grabbing solution
 opt.tf = subs(tf,solution);
 opt.ti  = subs(icollocate(t),solution);
 opt.tc = subs(collocate(t),solution);
@@ -191,17 +192,20 @@ opt.objective = subs(objective,solution);
 
 for i = 1:length(opt.ti)
     [opt.pm(:,:,i), opt.pcm(:,:,i)] = computeFK(opt.q(i,:));
-    opt.xcm(i) = computeCMx(opt.pcm(1,:,i));
-    opt.xzmp(i) = computeZMP(opt.q,opt.qd,diff(opt.qd));
+    opt.xcm(i) = computeCMx(opt.pcm(1,:,i)); % plot Center of Mass in x-position
+    opt.xzmp(i) = computeZMP(opt.q,opt.qd,diff(opt.qd)); % plot ZMP position
 end
 
+% plotting joint angles 
 plot(opt.ti,opt.q)
 legend('x1','x2','x3','x4','x5')
 
+% plotting joint velocities
 figure
 plot(opt.ti,opt.qd)
 legend('xd1','xd2','xd3','xd4','xd5')
 
+% plotting center of mass and zmp
 figure
 plot(opt.ti, [opt.xcm' opt.xzmp'])
 legend('xCOM','xZMP')
