@@ -1,5 +1,6 @@
 function [M,RHS] = eqOfmotion(theta_pos,theta_vel,torque)
-% Computes the numerical Equation of Motion of a Five Link Robot using Lagragian Dynamics
+% Computes the numerical Equation of Motion of a Five Link Robot using Lagragian Dynamics based on 
+% Lecture Notes from Introduction to Robotics, H. Harry Asada - Chapter 7. Page 8 to 16.
 % Last modification: 30/03/2014 (by Feliphe G. Galiza)
 
 % parameters according to human body
