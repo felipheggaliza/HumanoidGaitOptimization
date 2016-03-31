@@ -1,7 +1,7 @@
 % Computes optimal solution for half of a periodical cycle for a 5-link humanoid robot  
 % model: five revolute joints liked by five rigid bodies that represent
 % legs ( tibia + thigh) and upper body.
-% Obs: It is necessary to have TOMLAB PROPT installed.
+% Obs: It is necessary to have the Optimal Control software TOMLAB PROPT installed.
 % Last modification: 30/03/2014 (by Feliphe G. Galiza)
 
 close all
