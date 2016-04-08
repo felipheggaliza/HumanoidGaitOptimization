@@ -27,10 +27,10 @@ r(1,1) = (-L1 + r1) * sin(o1); % x cm position of link-1
 r(2,1) = (L1 - r1)* cos(o1); % y cm position of link-1
 r(3,1) = r(1,1) + (-L2 + r2) * sin(o2);% x cm position of link-2
 r(4,1) = r(2,1) + (L2-r2) *cos(o2); % y cm position of link-2
-r(5,1) = r(3,1) + -r3 * sin(o3);% x cm position of link-3
+r(5,1) = r(3,1) - r3 * sin(o3);% x cm position of link-3
 r(6,1) = r(4,1) + r3 * cos(o3);  % y cm position of link-3
-r(7,1) = r(5,1) + r4 * sin(o4); % x cm position of link-4
-r(8,1) = r(6,1) - r4 * cos(o4); % y cm position of link-4
+r(7,1) = r(3,1) + r4 * sin(o4); % x cm position of link-4
+r(8,1) = r(4,1) - r4 * cos(o4); % y cm position of link-4
 r(9,1) = r(7,1) + r5 * sin(o5); % x cm position of link-5
 r(10,1) = r(8,1)- r5 * cos(o5); % y cm position of link-5
 r(11,1) = o(1); % orientation of link-1 
@@ -44,7 +44,7 @@ MM = diag([m1 m1 m2 m2 m3 m3 m4 m4 m5 m5 J1 J2 J3 J4 J5]);
 
 % Vector of applied forces and moments, excluding the reaction forces and
 % moments
-Fe = [0; -m1*g; 0; -m2*g; 0; -m3*g; 0; -m4*g; 0;-m5*g; -u1+u2; -u2+u3; -u3+u4; -u4+u5; -u5];
+Fe = [0; -m1*g; 0; -m2*g; 0; -m3*g; 0; -m4*g; 0; -m5*g; -u1+u2; -u2+u3; -u3-u4; u4+u5; -u5];
 
 % Jacobian
 J = [diff(r, theta1), diff(r, theta2), diff(r,theta3), diff(r,theta4), diff(r,theta5)];

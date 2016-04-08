@@ -2,7 +2,7 @@
 % Computes the simbolic Equation of Motion of a Five Link Robot using Lagragian Dynamics
 % Last modification: 30/03/2014 (by Feliphe G. Galiza)
 
-syms theta1 theta2 theta3 theta4 theta5 theta1_dot theta2_dot theta3_dot theta4_dot theta5_dot theta1_acc theta2_acc theta3_acc theta4_acc theta5_acc m1 m2 m3 m4 m5 m6 r1 r2 r3 r4 r5 L1 L2 L3 L4 L5 Izz_1 Izz_2 Izz_3 Izz_4 Izz_5 u1 u2 u3 u4 u5
+syms theta1 theta2 theta3 theta4 theta5 theta1_dot theta2_dot theta3_dot theta4_dot theta5_dot theta1_acc theta2_acc theta3_acc theta4_acc theta5_acc m1 m2 m3 m4 m5 m6 r1 r2 r3 r4 r5 L1 L2 L3 L4 L5 J1 J2 J3 J4 J5 u1 u2 u3 u4 u5
 
 u = [u1; u2; u3; u4; u5]; % joint torques
 
@@ -12,11 +12,11 @@ theta_dot =[theta1_dot; theta2_dot; theta3_dot; theta4_dot; theta5_dot]; % joint
 theta_acc =[theta1_acc; theta2_acc; theta3_acc; theta4_acc; theta5_acc]; % joint accelerations
 
 % moments of inertia in respect to the base cordinate frame. i.e. Inertial Frame
-I(:,:,1) = [0, 0, 0; 0, 0, 0; 0,0, Izz_1];
-I(:,:,2) = [0, 0, 0; 0, 0, 0; 0,0, Izz_2];
-I(:,:,3) = [0, 0, 0; 0, 0, 0; 0,0, Izz_3];
-I(:,:,4) = [0, 0, 0; 0, 0, 0; 0,0, Izz_4];
-I(:,:,5) = [0, 0, 0; 0, 0, 0; 0,0, Izz_5];
+I(:,:,1) = [0, 0, 0; 0, 0, 0; 0,0, J1];
+I(:,:,2) = [0, 0, 0; 0, 0, 0; 0,0, J2];
+I(:,:,3) = [0, 0, 0; 0, 0, 0; 0,0, J3];
+I(:,:,4) = [0, 0, 0; 0, 0, 0; 0,0, J4];
+I(:,:,5) = [0, 0, 0; 0, 0, 0; 0,0, J5];
 
 % orientations
 o1 =  -theta(1);

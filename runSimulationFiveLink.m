@@ -3,6 +3,6 @@
 % Optimal Control solver.
 % Last modification: 30/03/2014 (by Feliphe G. Galiza)
 
-load('min_tf.mat');
+%load('min_tf.mat');
 
 simulate(opt);
